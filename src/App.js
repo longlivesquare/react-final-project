@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import ProductsList from './Products Overview/ProductsList';
-import { getAllProducts } from './Utility/FakeStore';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
