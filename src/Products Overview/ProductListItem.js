@@ -1,13 +1,21 @@
-import ProductsList from "./ProductsList"
+import Card from "react-bootstrap/Card";
+import './ProductListItem.css'
 
-const ProductListItem = ({title, image, category, description}) => {
+const ProductListItem = ({title, image, category, description, price}) => {
     return (
-        <div className='ProductListItem'>
-            <h3>{title}</h3>
-            <img src={image} alt='product'/>
-            <p>{category}</p>
-            <p>{description}</p>
-        </div>
+        <Card 
+            className='ProductListItem mb-2'
+            bg='dark'
+            text='white'
+            border='info'>
+            <Card.Img src={image} />
+            <Card.Header>{title}</Card.Header>
+            <Card.Body>
+                <Card.Text>
+                    ${price.toFixed(2)}
+                </Card.Text>
+            </Card.Body>
+        </Card>
     )
 }
 
