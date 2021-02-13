@@ -1,5 +1,4 @@
 import Card from "react-bootstrap/Card";
-import './ProductListItem.css'
 
 const ProductListItem = ({title, image, category, description, price}) => {
     return (
@@ -7,8 +6,12 @@ const ProductListItem = ({title, image, category, description, price}) => {
             className='ProductListItem mb-2'
             bg='dark'
             text='white'
-            border='info'>
-            <Card.Img src={image} />
+            border='info'
+            style={{
+                flex: "1 0 auto", 
+                width: "18rem"}}
+        >
+            <Card.Img src={image} style={{width: "100%"}}/>
             <Card.Header>{title}</Card.Header>
             <Card.Body>
                 <Card.Text>

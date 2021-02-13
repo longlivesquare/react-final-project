@@ -12,5 +12,6 @@ export const getSingleProduct = async (id) => {
     const apiURL = fakeURLStart + `products/${id}`;
     const response = await fetch(apiURL);
     const data = await response.json();
-    console.log(data.results[0]);
+    console.log(data);
+    return data;
 }
