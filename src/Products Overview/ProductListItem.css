@@ -1,7 +1,8 @@
 .card-img {
-    width: 90%;
+    width: 80%;
 }
 
 .card {
-    width:33%;
+    width:18%;
+    padding: 15px;
 }
