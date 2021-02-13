@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
 import CardDeck from "react-bootstrap/CardDeck";
 import Spinner from "react-bootstrap/Spinner";
 import styled from "styled-components";
 import { getAllProducts } from "../Utility/FakeStore";
 import ProductListItem from "./ProductListItem";
+import { useHistory } from "react-router-dom";
 
-const FlexCardDeck = styled(CardDeck)`
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 100%;
-    `
 
 const ProductsList = () => {
     const [products, setProducts] = useState([]);
-
-    
+    const {push} = useHistory();
 
     useEffect(() => {
         getAllProducts().then(setProducts);
@@ -28,8 +23,11 @@ const ProductsList = () => {
     return (
         <div>
             <h1>Product List</h1>
-            {products.length === 0 ? loading : <FlexCardDeck>
-                {products.map(({title, image, price, description, category}) => {
+            {products.length === 0 ? loading : <Container style={{width: "100%"}} fluid>
+                {products.map(({title, image, price, description, category, id}) => {
+                    const handleProductDetail = () => {
+                        push(`/products/${id}`);
+                    }
                     return(
                         <ProductListItem
                             key={title}
@@ -37,11 +35,12 @@ const ProductsList = () => {
                             image={image}
                             price={price}
                             description={description}
-                            category={category} 
+                            category={category}
+                            handleProdDet={handleProductDetail} 
                         />
                     )
                 })}
-            </FlexCardDeck>
+            </Container>
             }
         </div>
     )
