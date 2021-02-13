@@ -21,14 +21,14 @@ const ProductsList = () => {
         getAllProducts().then(setProducts);
     },[JSON.stringify(products)])
 
-    const nothing = <Spinner animation='border' role='status'>
+    const loading = <Spinner animation='border' role='status'>
         <span className="sr-only">Loading...</span>
     </Spinner>;
 
     return (
         <div>
             <h1>Product List</h1>
-            {products.length === 0 ? nothing : <FlexCardDeck>
+            {products.length === 0 ? loading : <FlexCardDeck>
                 {products.map(({title, image, price, description, category}) => {
                     return(
                         <ProductListItem
