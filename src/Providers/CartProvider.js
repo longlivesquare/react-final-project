@@ -18,7 +18,7 @@ const CartProvider = ({ children }) => {
             image, 
             price
         }
-        setCart(...cart, CartItem)
+        setCart([...cart, CartItem])
     }
 
     // Remove an item from the cart

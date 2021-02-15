@@ -24,7 +24,7 @@ const MainSiteNavbar = () => {
     return (
         <Navbar bg='dark' variant='dark'>
             <StyledNavbarBrand style={{fontFamily: "'Acme', sans-serif"}}>
-                <Link to='/'><Image src={`${process.env.PUBLIC_URL}/logo192.png`} alt='Logo' />Crazy Stevens Emporium</Link>
+                <Link to='/'><Image src={`${process.env.PUBLIC_URL}/logo64.png`} alt='Logo' />Crazy Stevens Emporium</Link>
             </StyledNavbarBrand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
