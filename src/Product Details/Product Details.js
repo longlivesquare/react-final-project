@@ -25,16 +25,21 @@ const ProductDetails = (props) => {
     return (
         <>
         <Navbar>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16" onClick={goBack} style={{cursor:"pointer"}}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16" onClick={goBack} style={{cursor:"pointer"}}>
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
             </svg>
         </Navbar>
             {Object.keys(product).length === 0 ? loading : (
                 <div>
-                    <Image src={product.image} rounded />
-                    <h2>{product.title}</h2>
-                    <p>${product.price.toFixed(2)}</p>
-                    <p>{product.description}</p>
+                    <div>
+                        <Image src={product.image} style={{width:"20%"}} rounded />
+                        <h2>{product.title}</h2>
+                        <p>${product.price.toFixed(2)}</p>
+                        <p>{product.description}</p>
+                    </div>
+                    <div>
+                        
+                    </div>
                 </div>
             )}
         </>

@@ -12,20 +12,25 @@ const StyledNavbarBrand = styled(Navbar.Brand)`
     }
 
     a:visited {
-        coloor: #009900;
+        color: #009900;
+    }
+
+    a:hover {
+        color: white;
     }
 `
 
 const MainSiteNavbar = () => {
     return (
         <Navbar bg='dark' variant='dark'>
-            <Navbar.Brand style={{fontFamily: "'Acme', sans-serif"}}>
-                <Link to='/'><Image src={`${process.env.PUBLIC_URL}/logo64.png`} alt='Logo' />Crazy Stevens Emporium</Link>
-            </Navbar.Brand>
+            <StyledNavbarBrand style={{fontFamily: "'Acme', sans-serif"}}>
+                <Link to='/'><Image src={`${process.env.PUBLIC_URL}/logo192.png`} alt='Logo' />Crazy Stevens Emporium</Link>
+            </StyledNavbarBrand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                     <Link to='/products'>Browse</Link>
+                    <Link to='/cart'>Cart</Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

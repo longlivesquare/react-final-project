@@ -4,10 +4,11 @@ import ProductsList from './Products Overview/ProductsList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductDetails from './Product Details/Product Details';
 import MainSiteNavbar from './Navbar/Main Site Navbar';
+import CartProvider from './Providers/CartProvider';
 
 function App() {
   return (
-    <div>
+    <CartProvider>
       <Switch>
         <Route path='/products' component={ProductsList} exact/>
         <Route path='/products/:index' component={ProductDetails} />
@@ -16,7 +17,7 @@ function App() {
           Welcome to my Store
         </Route>
       </Switch>
-    </div>
+    </CartProvider>
   );
 }
 
