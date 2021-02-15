@@ -3,6 +3,7 @@ import './App.css';
 import ProductsList from './Products Overview/ProductsList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductDetails from './Product Details/Product Details';
+import MainSiteNavbar from './Navbar/Main Site Navbar';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path='/products' component={ProductsList} exact/>
         <Route path='/products/:index' component={ProductDetails} />
         <Route path='/' exact>
+          <MainSiteNavbar />
           Welcome to my Store
         </Route>
       </Switch>
