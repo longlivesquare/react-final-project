@@ -7,6 +7,7 @@ import MainSiteNavbar from './Navbar/Main Site Navbar';
 import CartProvider from './Providers/CartProvider';
 import Cart from './Cart/Cart';
 import { Luhn } from './Utility/CreditCard';
+import CreditCardForm from './Checkout/Credit Card Form';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path='/cart' component={Cart} />
         <Route path='/' exact>
           <MainSiteNavbar />
-          Welcome to my Store
+          <CreditCardForm />
         </Route>
       </Switch>
     </CartProvider>

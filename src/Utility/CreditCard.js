@@ -1,3 +1,6 @@
+// Function to test whether a passed in number is a possible valid CC number
+// It only checks if its possible. It might be the case
+// that the specific number hasn't yet been assigned to a card
 export const testCCNum = (num) => {
     return Luhn(num) && 
         (isVisa(num) || 
