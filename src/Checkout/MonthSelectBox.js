@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap"
 
 const MonthSelectBox = () => {
     return (
-        <Form.Control as='select'>
+        <Form.Control as='select' custom required>
             <option>01</option>
             <option>02</option>
             <option>03</option>

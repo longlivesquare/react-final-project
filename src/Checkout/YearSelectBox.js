@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap"
 
 const YearSelectBox = () => {
     return (
-        <Form.Control as='select'>
+        <Form.Control as='select' custom required>
             <option>21</option>
             <option>22</option>
             <option>23</option>
