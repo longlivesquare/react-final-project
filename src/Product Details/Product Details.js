@@ -2,18 +2,17 @@ import { useEffect, useState } from "react";
 import { getSingleProduct } from "../Utility/FakeStore";
 import Spinner from 'react-bootstrap/Spinner';
 import Image from 'react-bootstrap/Image';
-import { useHistory, useParams } from "react-router-dom";
-import Navbar from "react-bootstrap/Navbar";
+import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import AddToCart from "./AddToCart";
 import GoBackNavbar from "../Navbar/GoBackNavbar";
+import StyledButton from "../common/Button"
 
 const ProductDetails = (props) => {
     const [product, setProduct] = useState({});
     const [modalShow, setModalShow] = useState(false)
 
     const {index} = useParams();
-    const history = useHistory();
 
     useEffect(()=>{
         getSingleProduct(index).then(setProduct);
@@ -22,10 +21,6 @@ const ProductDetails = (props) => {
     const loading = <Spinner animation='border' role='status'>
         <span className="sr-only">Loading...</span>
     </Spinner>;
-
-    const goBack = () => {
-        history.goBack();
-    }
 
     const handleAddProduct = () => {
         setModalShow(true);
@@ -52,7 +47,7 @@ const ProductDetails = (props) => {
                         price={product.price}
                     />
                     <div>
-                        <button onClick={handleAddProduct}>Add to cart</button>
+                        <StyledButton onClick={handleAddProduct}>Add to cart</StyledButton>
                     </div>
                 </Container>
             )}

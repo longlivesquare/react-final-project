@@ -12,6 +12,7 @@ const AddToCart = (props) => {
     const [qty, setQty] = useState(1);
 
     const handleAddProduct = (event) => {
+        event.preventDefault();
         AddItem(
             props.id, 
             parseInt(event.target.previousElementSibling.value),
@@ -38,7 +39,7 @@ const AddToCart = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <Form inline>
-                    <Form.Label htmlFor="AddToCartFormQuantity" sronly>
+                    <Form.Label htmlFor="AddToCartFormQuantity" srOnly>
                         Quantity
                     </Form.Label>
                     <input 

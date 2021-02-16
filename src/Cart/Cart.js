@@ -30,7 +30,7 @@ const Cart = () => {
                         price={product.price}
                     />)
                 })}
-                <Row><b>Your Total: ${cartPrice}</b></Row>
+                <Row><b>Your Total: ${cartPrice.toFixed(2)}</b></Row>
                 <Row>
                     <Form inline>
                         <StyledButton onClick={handleCheckout}>Checkout</StyledButton>
