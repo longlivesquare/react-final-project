@@ -4,14 +4,17 @@ import Modal from "react-bootstrap/Modal"
 import { useContext } from "react"
 import CartContext from "../Contexts/CartContext"
 import { useHistory } from "react-router-dom"
+import { useState } from "react"
 
 const AddToCart = (props) => {
     const { AddItem } = useContext(CartContext)
     const { push } = useHistory();
+    const [qty, setQty] = useState(1);
+
     const handleAddProduct = (event) => {
         AddItem(
             props.id, 
-            event.target.previousElementSibling.value,
+            parseInt(event.target.previousElementSibling.value),
             props.title,
             props.image,
             props.price
@@ -20,6 +23,7 @@ const AddToCart = (props) => {
     }
 
     return (
+
         <Modal
             show={props.show}
             onHide={props.onHide}
@@ -41,7 +45,9 @@ const AddToCart = (props) => {
                         type='number' 
                         id="AddToCartFormQuantity" 
                         name="AddToCartFormQuantity" 
-                        min="1" 
+                        min="1"
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}
                     />
                     <StyledButton onClick={handleAddProduct}>Add to Cart</StyledButton>
                 </Form>

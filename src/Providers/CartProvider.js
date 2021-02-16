@@ -2,7 +2,8 @@ import { useState } from "react"
 import CartContext from "../Contexts/CartContext"
 
 const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([]);
+    const [cartQty, setCartQty] = useState(0);
 
     // Add a new item to the cart
     // id: Id of product to add to cart
@@ -18,7 +19,9 @@ const CartProvider = ({ children }) => {
             image, 
             price
         }
-        setCart([...cart, CartItem])
+        setCart([...cart, CartItem]);
+        console.log("Adding to qty:",qty);
+        setCartQty(qty+cartQty);
     }
 
     // Remove an item from the cart
@@ -29,6 +32,7 @@ const CartProvider = ({ children }) => {
                 product.id === id
             )
         })
+        setCartQty(cartQty-cart[idx].qty)
         cart.splice(idx, 1);
     }
 
@@ -42,6 +46,7 @@ const CartProvider = ({ children }) => {
             )
         })
         //New Qty is 0
+        setCartQty(cartQty+(qty-cart[idx].qty))
         if (!qty) {
             cart.splice(idx, 1)
         }
@@ -50,9 +55,8 @@ const CartProvider = ({ children }) => {
         }
     }
 
-
     return (
-        <CartContext.Provider value={{cart, AddItem, RemoveItem, UpdateQty}}>
+        <CartContext.Provider value={{cart, AddItem, RemoveItem, UpdateQty, cartQty}}>
             {children}
         </CartContext.Provider>
     )

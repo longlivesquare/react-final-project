@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getSingleProduct } from "../Utility/FakeStore";
 import Spinner from 'react-bootstrap/Spinner';
 import Image from 'react-bootstrap/Image';
 import { useHistory, useParams } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
-import CartContext from '../Contexts/CartContext'
 import { Container } from "react-bootstrap";
 import AddToCart from "./AddToCart";
 
@@ -14,7 +13,6 @@ const ProductDetails = (props) => {
 
     const {index} = useParams();
     const history = useHistory();
-    const { AddItem } = useContext(CartContext)
 
     useEffect(()=>{
         getSingleProduct(index).then(setProduct);
