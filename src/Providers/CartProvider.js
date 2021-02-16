@@ -4,6 +4,7 @@ import CartContext from "../Contexts/CartContext"
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [cartQty, setCartQty] = useState(0);
+    const [cartPrice, setCartPrice] = useState(0);
 
     // Add a new item to the cart
     // id: Id of product to add to cart
@@ -20,33 +21,25 @@ const CartProvider = ({ children }) => {
             price
         }
         setCart([...cart, CartItem]);
-        console.log("Adding to qty:",qty);
         setCartQty(qty+cartQty);
+        setCartPrice(cartPrice+(price*qty))
     }
 
     // Remove an item from the cart
     // id: id of product to remove
-    const RemoveItem = (id) => {
-        const idx = cart.findIndex((product) => {
-            return(
-                product.id === id
-            )
-        })
-        setCartQty(cartQty-cart[idx].qty)
+    const RemoveItem = (idx) => {
+        setCartQty(cartQty-cart[idx].qty);
+        setCartPrice(cartPrice-(cart[idx].qty*cart[idx].price));
         cart.splice(idx, 1);
     }
 
     // Update the quantity of item in cart
     // id: id of product to update
     // qty: New quantity of product. Replaces old value.
-    const UpdateQty = (id, qty) => {
-        const idx = cart.findIndex((product) => {
-            return (
-                product.id === id
-            )
-        })
+    const UpdateQty = (idx, qty) => {
         //New Qty is 0
         setCartQty(cartQty+(qty-cart[idx].qty))
+        setCartPrice(cartPrice+(qty-cart[idx].qty)*cart[idx].price)
         if (!qty) {
             cart.splice(idx, 1)
         }
@@ -56,7 +49,7 @@ const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{cart, AddItem, RemoveItem, UpdateQty, cartQty}}>
+        <CartContext.Provider value={{cart, AddItem, RemoveItem, UpdateQty, cartQty, cartPrice}}>
             {children}
         </CartContext.Provider>
     )

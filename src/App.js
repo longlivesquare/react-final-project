@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductDetails from './Product Details/Product Details';
 import MainSiteNavbar from './Navbar/Main Site Navbar';
 import CartProvider from './Providers/CartProvider';
+import Cart from './Cart/Cart';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Switch>
         <Route path='/products' component={ProductsList} exact/>
         <Route path='/products/:index' component={ProductDetails} />
+        <Route path='/cart' component={Cart} />
         <Route path='/' exact>
           <MainSiteNavbar />
           Welcome to my Store
