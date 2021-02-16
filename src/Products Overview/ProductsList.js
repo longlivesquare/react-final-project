@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-import CardDeck from "react-bootstrap/CardDeck";
 import Spinner from "react-bootstrap/Spinner";
-import styled from "styled-components";
 import { getAllProducts } from "../Utility/FakeStore";
 import ProductListItem from "./ProductListItem";
 import { useHistory } from "react-router-dom";
+import MainSiteNavbar from "../Navbar/Main Site Navbar";
 
 
 const ProductsList = () => {
@@ -21,7 +20,8 @@ const ProductsList = () => {
     </Spinner>;
 
     return (
-        <div>
+        <Container>
+            <MainSiteNavbar />
             <h1>Product List</h1>
             {products.length === 0 ? loading : <Container style={{width: "100%"}} fluid>
                 {products.map(({title, image, price, description, category, id}) => {
@@ -42,7 +42,7 @@ const ProductsList = () => {
                 })}
             </Container>
             }
-        </div>
+        </Container>
     )
 }
 
