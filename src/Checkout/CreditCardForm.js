@@ -19,7 +19,7 @@ const CreditCardForm = (props) => {
 
     return (
         <Container>
-            <Form validated={validated} onSubmit={handleSubmit}>
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group controlId='formGroupCreditCard'>
                     <Form.Label>Credit Card Number</Form.Label>
                     <Form.Control type='text' required/>
@@ -44,6 +44,9 @@ const CreditCardForm = (props) => {
                             minLength={3}
                             required
                         />
+                        <Form.Control.Feedback type='invalid'>
+                            Enter the security code.
+                        </Form.Control.Feedback>
                         <Form.Text id="secCodeHelpBlock" muted>
                             This code can usually be found on the back of your credit card.
                         </Form.Text>
@@ -51,6 +54,9 @@ const CreditCardForm = (props) => {
                     <Form.Group as={Col} controlId='formGroupCCZip'>
                         <Form.Label>Zip</Form.Label>
                         <Form.Control type='text' required/>
+                        <Form.Control.Feedback type='invalid'>
+                            Enter the zip associated with your card
+                        </Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
                 <StyledButton type='submit'>Next</StyledButton>
