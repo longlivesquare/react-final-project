@@ -5,13 +5,16 @@ import { getAllProducts } from "../Utility/FakeStore";
 import ProductListItem from "./ProductListItem";
 import { useHistory } from "react-router-dom";
 import CategoryList from "./CategoryList";
-import { Form, Row } from "react-bootstrap";
+import { Form, FormControl, InputGroup, Row } from "react-bootstrap";
+import StyledButton from "../common/Button";
 
 const ProductsList = () => {
     const [products, setProducts] = useState([]);
     const [filtCategory, setFiltCategory] = useState('---');
     const [filteredList, setFilteredList] = useState([]);
     const [sortBy, setSortBy] = useState(0);
+    const [search, setSearch] = useState('');
+    const [doSearch, setDoSearch] = useState(false);
 
     const {push} = useHistory();
 
@@ -24,8 +27,11 @@ const ProductsList = () => {
     </Spinner>;
 
     const generateList = (myProducts=products) => {
+        if(doSearch) {
+            myProducts = myProducts.filter(product => product.title.toLowerCase().search(search) >= 0)
+        }
+
         switch (sortBy) {
-            
             case 1: // Price: Low to High
                 myProducts.sort((el1, el2) => {
                     const price1 = parseFloat(el1.price);
@@ -84,6 +90,11 @@ const ProductsList = () => {
         setSortBy(e.target.selectedIndex);
     }
 
+    const handleClearSearch = () => {
+        setSearch('');
+        setDoSearch(false);
+    }
+
     return (
         <Container>
             <Row>
@@ -96,6 +107,22 @@ const ProductsList = () => {
                         <option>Price: High to Low</option>
                     </Form.Control>
                 </Form.Group>
+                <InputGroup className='mb-3'>
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="search-box">Search</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl 
+                        placeholder='Search'
+                        aria-label='Search'
+                        aria-describedby='search-box'
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <InputGroup.Append>
+                        <StyledButton onClick={()=>setDoSearch(true)}>Search</StyledButton>
+                        <StyledButton onClick={handleClearSearch}>Clear Search</StyledButton>
+                    </InputGroup.Append>
+                </InputGroup>
             </Row>
             <h1>Product List</h1>
             {products.length === 0 ? loading : <Container style={{width: "100%"}} fluid>
