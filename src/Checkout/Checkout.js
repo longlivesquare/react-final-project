@@ -5,13 +5,45 @@ import styled from "styled-components";
 import { useCart } from "../hooks";
 import CartList from "../Cart/CartList";
 import StyledButton from "../common/Button";
+import { useState } from "react";
+import BillingAddressForm from "./BillingAddressForm";
+import { calcShipping, calcTaxes } from "../Utility/ShippingAndTaxes";
 
 const CheckoutCard = styled(Card)`
     width: 90%;
 `
 
 const Checkout = (props) => {
-    const { cartTotalPrice } = useCart();
+    const { cartTotalPrice, cartQty, ClearCart } = useCart();
+    const [shipAddresss, setShipAddress] = useState({});
+    const [ccInfo, setccInfo] = useState({});
+    const [billAddress, setBillAddress] = useState({});
+    const [orderCompleteMessage, setOrderCompleteMessage] = useState('');
+
+    const saveShipAddress = (newAdd) => {
+        console.log(newAdd)
+        setShipAddress(newAdd);
+    }
+
+    const saveBillAddress = (newAdd) => {
+        setBillAddress(newAdd);
+    }
+
+    const saveCCInfo = (newCC) => {
+        setccInfo(newCC);
+    }
+
+    const handleSubmitOrder = () => {
+        if(Object.keys(shipAddresss).length &&
+        Object.keys(ccInfo).length &&
+        Object.keys(billAddress).length) {
+            ClearCart();
+            setShipAddress({});
+            setccInfo({});
+            setBillAddress({});
+            setOrderCompleteMessage("Order complete.")
+        }
+    }
 
     return (
         <Container>
@@ -22,7 +54,7 @@ const Checkout = (props) => {
                             Shipping Address
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                            <ShippingAddressForm />
+                            <ShippingAddressForm saveShipAddress={saveShipAddress}/>
                             
                         </Accordion.Collapse>
                     </CheckoutCard>
@@ -31,7 +63,7 @@ const Checkout = (props) => {
                             Credit Card Info
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
-                            <CreditCardForm />
+                            <CreditCardForm saveCCInfo={saveCCInfo} />
                         </Accordion.Collapse>
                     </CheckoutCard>
                     <CheckoutCard>
@@ -39,7 +71,7 @@ const Checkout = (props) => {
                             Billing Address
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="2">
-                            <Accordion.Toggle as={Button} eventKey="1">Next</Accordion.Toggle>
+                            <BillingAddressForm {...shipAddresss} saveBillAddress={saveBillAddress}/>
                         </Accordion.Collapse>
                     </CheckoutCard>
                     <CheckoutCard>
@@ -55,13 +87,17 @@ const Checkout = (props) => {
                 <CheckoutCard as={Col} md={4}>
                     <Card.Body>
                         <h3>Order Summary</h3>
-                        <Card.Text>Items: ${cartTotalPrice}</Card.Text>
-                        <Card.Text>Tax: $ 12.87</Card.Text>
-                        <Card.Text>S/H: $ 6.78</Card.Text>
-                        Total:
+                        <Card.Text>Items: ${cartTotalPrice.toFixed(2)}</Card.Text>
+                        <Card.Text>Tax: ${calcTaxes(cartTotalPrice).toFixed(2)}</Card.Text>
+                        <Card.Text>S/H: ${calcShipping(cartQty).toFixed(2)}</Card.Text>
+                        Total: ${(cartTotalPrice+calcShipping(cartQty)+calcTaxes(cartTotalPrice)).toFixed(2)}
                     </Card.Body>
+                    <Card.Footer>
+                        <StyledButton onClick={handleSubmitOrder}>Submit Order</StyledButton>
+                    </Card.Footer>
                 </CheckoutCard>
             </Row>
+            <h1>{orderCompleteMessage}</h1>
         </Container>
     )
 }
