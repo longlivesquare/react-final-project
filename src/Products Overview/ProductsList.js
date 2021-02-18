@@ -5,11 +5,13 @@ import { getAllProducts } from "../Utility/FakeStore";
 import ProductListItem from "./ProductListItem";
 import { useHistory } from "react-router-dom";
 import CategoryList from "./CategoryList";
+import { Form } from "react-bootstrap";
 
 const ProductsList = () => {
     const [products, setProducts] = useState([]);
     const [filtCategory, setFiltCategory] = useState('---');
     const [filteredList, setFilteredList] = useState([]);
+    const [sortBy, setSortBy] = useState(0);
 
     const {push} = useHistory();
 
@@ -22,6 +24,36 @@ const ProductsList = () => {
     </Spinner>;
 
     const generateList = (myProducts=products) => {
+        switch (sortBy) {
+            
+            case 1: // Price: Low to High
+                myProducts.sort((el1, el2) => {
+                    const price1 = parseFloat(el1.price);
+                    const price2 = parseFloat(el2.price);
+                    return price1-price2;
+                })
+                break;
+            case 2: // Price: High to Low
+                myProducts.sort((el1, el2) => {
+                    const price1 = parseFloat(el1.price);
+                    const price2 = parseFloat(el2.price);
+                    return price2-price1;
+                })
+                break;
+            case 0: // Category
+            default:
+                myProducts.sort((el1, el2) => {
+                    if(el1.category > el2.category) {
+                        return -1;
+                    } else if (el1.category < el2.category) {
+                        return 1;
+                    }
+                    return 0;
+
+                })
+                break;
+        }
+
         return myProducts.map(({title, image, price, description, category, id}) => {
             const handleProductDetail = () => {
                 push(`/products/${id}`);
@@ -48,9 +80,21 @@ const ProductsList = () => {
         }
     }
 
+    const handleSort = (e) => {
+        setSortBy(e.target.selectedIndex);
+    }
+
     return (
         <Container>
             <CategoryList onChange={handleCategoryFilter} />
+            <Form.Group>
+                <Form.Label>Sort by...</Form.Label>
+                <Form.Control as='select' onChange={handleSort}>
+                    <option>Category</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                </Form.Control>
+            </Form.Group>
             <h1>Product List</h1>
             {products.length === 0 ? loading : <Container style={{width: "100%"}} fluid>
                 {filtCategory === '---' ? 
