@@ -4,8 +4,6 @@ import Spinner from "react-bootstrap/Spinner";
 import { getAllProducts } from "../Utility/FakeStore";
 import ProductListItem from "./ProductListItem";
 import { useHistory } from "react-router-dom";
-import MainSiteNavbar from "../Navbar/Main Site Navbar";
-
 
 const ProductsList = () => {
     const [products, setProducts] = useState([]);
@@ -21,7 +19,6 @@ const ProductsList = () => {
 
     return (
         <Container>
-            <MainSiteNavbar />
             <h1>Product List</h1>
             {products.length === 0 ? loading : <Container style={{width: "100%"}} fluid>
                 {products.map(({title, image, price, description, category, id}) => {

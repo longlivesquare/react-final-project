@@ -4,7 +4,7 @@ import CartContext from "../Contexts/CartContext"
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [cartQty, setCartQty] = useState(0);
-    const [cartPrice, setCartPrice] = useState(0);
+    const [cartTotalPrice, setCartPrice] = useState(0);
 
     // Add a new item to the cart
     // id: Id of product to add to cart
@@ -22,14 +22,14 @@ const CartProvider = ({ children }) => {
         }
         setCart([...cart, CartItem]);
         setCartQty(qty+cartQty);
-        setCartPrice(cartPrice+(price*qty))
+        setCartPrice(cartTotalPrice+(price*qty))
     }
 
     // Remove an item from the cart
     // id: id of product to remove
     const RemoveItem = (idx) => {
         setCartQty(cartQty-cart[idx].qty);
-        setCartPrice(cartPrice-(cart[idx].qty*cart[idx].price));
+        setCartPrice(cartTotalPrice-(cart[idx].qty*cart[idx].price));
         cart.splice(idx, 1);
     }
 
@@ -39,7 +39,7 @@ const CartProvider = ({ children }) => {
     const UpdateQty = (idx, qty) => {
         //New Qty is 0
         setCartQty(cartQty+(qty-cart[idx].qty))
-        setCartPrice(cartPrice+(qty-cart[idx].qty)*cart[idx].price)
+        setCartPrice(cartTotalPrice+(qty-cart[idx].qty)*cart[idx].price)
         if (!qty) {
             cart.splice(idx, 1)
         }
@@ -49,7 +49,7 @@ const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{cart, AddItem, RemoveItem, UpdateQty, cartQty, cartPrice}}>
+        <CartContext.Provider value={{cart, AddItem, RemoveItem, UpdateQty, cartQty, cartTotalPrice}}>
             {children}
         </CartContext.Provider>
     )

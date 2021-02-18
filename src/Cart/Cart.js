@@ -6,7 +6,7 @@ import GoBackNavbar from "../Navbar/GoBackNavbar";
 import CartItem from "./CartItem";
 
 const Cart = () => {
-    const { cart, cartPrice } = useCart();
+    const { cart, cartTotalPrice } = useCart();
     const history = useHistory();
 
     const handleCheckout = (e) => {
@@ -30,7 +30,7 @@ const Cart = () => {
                         price={product.price}
                     />)
                 })}
-                <Row><b>Your Total: ${cartPrice.toFixed(2)}</b></Row>
+                <Row><b>Your Total: ${cartTotalPrice.toFixed(2)}</b></Row>
                 <Row>
                     <Form inline>
                         <StyledButton onClick={handleCheckout}>Checkout</StyledButton>
