@@ -6,7 +6,6 @@ import ProductDetails from './Product Details/Product Details';
 import MainSiteNavbar from './Navbar/Main Site Navbar';
 import CartProvider from './Providers/CartProvider';
 import Cart from './Cart/Cart';
-import ShippingAddressForm from './Checkout/ShippingAddressForm';
 import Checkout from './Checkout/Checkout';
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
         <Route path='/cart' component={Cart} />
         <Route path='/checkout' component={Checkout} />
         <Route path='/' exact>
-          <ShippingAddressForm />
+          <h1>Welcome to my shop</h1>
         </Route>
       </Switch>
     </CartProvider>
