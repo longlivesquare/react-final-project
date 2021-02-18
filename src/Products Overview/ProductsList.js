@@ -5,7 +5,7 @@ import { getAllProducts } from "../Utility/FakeStore";
 import ProductListItem from "./ProductListItem";
 import { useHistory } from "react-router-dom";
 import CategoryList from "./CategoryList";
-import { Form } from "react-bootstrap";
+import { Form, Row } from "react-bootstrap";
 
 const ProductsList = () => {
     const [products, setProducts] = useState([]);
@@ -86,15 +86,17 @@ const ProductsList = () => {
 
     return (
         <Container>
-            <CategoryList onChange={handleCategoryFilter} />
-            <Form.Group>
-                <Form.Label>Sort by...</Form.Label>
-                <Form.Control as='select' onChange={handleSort}>
-                    <option>Category</option>
-                    <option>Price: Low to High</option>
-                    <option>Price: High to Low</option>
-                </Form.Control>
-            </Form.Group>
+            <Row>
+                <CategoryList onChange={handleCategoryFilter} />
+                <Form.Group>
+                    <Form.Label>Sort by...</Form.Label>
+                    <Form.Control as='select' onChange={handleSort}>
+                        <option>Category</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                    </Form.Control>
+                </Form.Group>
+            </Row>
             <h1>Product List</h1>
             {products.length === 0 ? loading : <Container style={{width: "100%"}} fluid>
                 {filtCategory === '---' ? 
