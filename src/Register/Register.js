@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Card, Container, Form } from "react-bootstrap"
 import { useHistory } from "react-router-dom";
+import StyledButton from "../common/Button";
 
 const RegistrationPage = (props) => {
     const [validated, setValidated] = useState(false);
@@ -35,9 +36,16 @@ const RegistrationPage = (props) => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Control type='password' value={confPassword} onChange={(e) => setConfPassword(e.target.value)} required />
+                        </Form.Group>
+                        <StyledButton type='submit'>Register</StyledButton>
                     </Form>
                 </Card.Body>
             </Card>
         </Container>
     )
 }
+
+export default RegistrationPage;
