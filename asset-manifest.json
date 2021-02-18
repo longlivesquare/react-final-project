@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/react-final-project/static/css/main.cbb5c0dd.chunk.css",
-    "main.js": "/react-final-project/static/js/main.44062286.chunk.js",
-    "main.js.map": "/react-final-project/static/js/main.44062286.chunk.js.map",
-    "runtime-main.js": "/react-final-project/static/js/runtime-main.4ad2fb2d.js",
-    "runtime-main.js.map": "/react-final-project/static/js/runtime-main.4ad2fb2d.js.map",
+    "main.js": "/react-final-project/static/js/main.6b7c91a4.chunk.js",
+    "main.js.map": "/react-final-project/static/js/main.6b7c91a4.chunk.js.map",
+    "runtime-main.js": "/react-final-project/static/js/runtime-main.f229d24e.js",
+    "runtime-main.js.map": "/react-final-project/static/js/runtime-main.f229d24e.js.map",
     "static/css/2.150d169a.chunk.css": "/react-final-project/static/css/2.150d169a.chunk.css",
-    "static/js/2.34b3a7e2.chunk.js": "/react-final-project/static/js/2.34b3a7e2.chunk.js",
-    "static/js/2.34b3a7e2.chunk.js.map": "/react-final-project/static/js/2.34b3a7e2.chunk.js.map",
-    "static/js/3.5a9b856e.chunk.js": "/react-final-project/static/js/3.5a9b856e.chunk.js",
-    "static/js/3.5a9b856e.chunk.js.map": "/react-final-project/static/js/3.5a9b856e.chunk.js.map",
+    "static/js/2.c69dc15b.chunk.js": "/react-final-project/static/js/2.c69dc15b.chunk.js",
+    "static/js/2.c69dc15b.chunk.js.map": "/react-final-project/static/js/2.c69dc15b.chunk.js.map",
+    "static/js/3.0a69c4db.chunk.js": "/react-final-project/static/js/3.0a69c4db.chunk.js",
+    "static/js/3.0a69c4db.chunk.js.map": "/react-final-project/static/js/3.0a69c4db.chunk.js.map",
     "index.html": "/react-final-project/index.html",
     "static/css/2.150d169a.chunk.css.map": "/react-final-project/static/css/2.150d169a.chunk.css.map",
     "static/css/main.cbb5c0dd.chunk.css.map": "/react-final-project/static/css/main.cbb5c0dd.chunk.css.map",
-    "static/js/2.34b3a7e2.chunk.js.LICENSE.txt": "/react-final-project/static/js/2.34b3a7e2.chunk.js.LICENSE.txt"
+    "static/js/2.c69dc15b.chunk.js.LICENSE.txt": "/react-final-project/static/js/2.c69dc15b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.4ad2fb2d.js",
+    "static/js/runtime-main.f229d24e.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.34b3a7e2.chunk.js",
+    "static/js/2.c69dc15b.chunk.js",
     "static/css/main.cbb5c0dd.chunk.css",
-    "static/js/main.44062286.chunk.js"
+    "static/js/main.6b7c91a4.chunk.js"
   ]
 }
