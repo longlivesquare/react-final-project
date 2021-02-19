@@ -5,7 +5,7 @@ import { getAllProducts } from "../Utility/FakeStore";
 import ProductListItem from "./ProductListItem";
 import { useHistory } from "react-router-dom";
 import CategoryList from "./CategoryList";
-import { Form, FormControl, InputGroup, Row } from "react-bootstrap";
+import { Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
 import StyledButton from "../common/Button";
 
 const ProductsList = () => {
@@ -98,31 +98,45 @@ const ProductsList = () => {
     return (
         <Container>
             <Row>
+                <Col md={3}>
                 <CategoryList onChange={handleCategoryFilter} />
-                <Form.Group>
-                    <Form.Label>Sort by...</Form.Label>
+                </Col>
+                <Col md={3}>
+                <InputGroup className='mb-3'>
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id='sort-list'>Sort by...</InputGroup.Text>
+                    </InputGroup.Prepend>
                     <Form.Control as='select' onChange={handleSort}>
                         <option>Category</option>
                         <option>Price: Low to High</option>
                         <option>Price: High to Low</option>
                     </Form.Control>
-                </Form.Group>
-                <InputGroup className='mb-3'>
-                    <InputGroup.Prepend>
-                        <InputGroup.Text id="search-box">Search</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl 
-                        placeholder='Search'
-                        aria-label='Search'
-                        aria-describedby='search-box'
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
-                    <InputGroup.Append>
-                        <StyledButton onClick={()=>setDoSearch(true)}>Search</StyledButton>
-                        <StyledButton onClick={handleClearSearch}>Clear Search</StyledButton>
-                    </InputGroup.Append>
                 </InputGroup>
+                </Col>
+                <Col md={6}>
+                    <InputGroup className='mb-3'>
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="search-box">Search</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl 
+                            placeholder='Search'
+                            aria-label='Search'
+                            aria-describedby='search-box'
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            onKeyUp={(e) => {
+                                console.log(e)
+                                if(e.key === 'Enter'){
+                                    setDoSearch(true)
+                                }
+                            }}
+                        />
+                        <InputGroup.Append>
+                            <StyledButton onClick={()=>setDoSearch(true)}>Search</StyledButton>
+                            <StyledButton onClick={handleClearSearch}>Clear Search</StyledButton>
+                        </InputGroup.Append>
+                    </InputGroup>
+                </Col>
             </Row>
             <h1>Product List</h1>
             {products.length === 0 ? loading : <Container style={{width: "100%"}} fluid>
