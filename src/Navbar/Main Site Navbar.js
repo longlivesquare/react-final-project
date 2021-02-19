@@ -8,7 +8,7 @@ import { useCart } from "../hooks"
 
 const StyledNavbarBrand = styled(Navbar.Brand)`
     font-family: 'Acme', sans-serif;
-
+    font-size: 1.4em;
     a:link {
         color: #009900;
     }
@@ -34,7 +34,7 @@ const MainSiteNavbar = () => {
                 <Nav className="mr-auto" style={{display:"flex", alignContent:"space-around"}}>
                     <Link to='/products'>Browse</Link>
                     <Link to='/cart'>
-                        <Image src={`${process.env.PUBLIC_URL}/cart4.svg`} alt='cart'/>
+                        <Image src={`${process.env.PUBLIC_URL}/cart4.svg`} alt='cart' style={{paddingLeft: "5px"}}/>
                         <Badge variant='dark'>{cartQty}</Badge>
                         <span className='sr-only'>items in cart</span>
                     </Link>
